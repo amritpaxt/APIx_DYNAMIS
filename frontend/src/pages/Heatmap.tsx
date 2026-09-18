@@ -1,0 +1,2 @@
+import { useEffect, useState } from "react"; import { api } from "../api/client";
+export function Heatmap() { const [cells, setCells] = useState<{route:string;window:number;fare:number}[]>([]); useEffect(() => { api.heatmap().then(r => setCells(r.cells)); }, []); return <><h1>Route and booking window heatmap</h1><table><thead><tr><th>Route</th><th>Window</th><th>Eligible fare</th></tr></thead><tbody>{cells.map((c, i) => <tr key={i}><td>{c.route}</td><td>T+{c.window}</td><td>₹{c.fare.toLocaleString()}</td></tr>)}</tbody></table></>; }

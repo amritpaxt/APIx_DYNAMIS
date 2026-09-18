@@ -1,0 +1,2 @@
+import { useEffect, useState } from "react"; import { api, IndexPoint } from "../api/client";
+export function SpreadIndex() { const [data, setData] = useState<IndexPoint[]>([]); useEffect(() => { api.index().then(setData); }, []); const latest = data.at(-1); return <><h1>Booking window spread</h1><p>T+1 versus T+30 eligible fare ratio.</p><p className="metric">{latest?.spread_sub_index?.toFixed(2) ?? "—"}</p></>; }

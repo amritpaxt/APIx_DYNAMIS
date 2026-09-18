@@ -1,0 +1,3 @@
+import { useState } from "react"; import { Dashboard } from "./pages/Dashboard"; import { Heatmap } from "./pages/Heatmap"; import { Elasticity } from "./pages/Elasticity"; import { SpreadIndex } from "./pages/SpreadIndex"; import { Backtest } from "./pages/Backtest"; import { SourceHealth } from "./pages/SourceHealth"; import { Explainer } from "./pages/Explainer";
+const pages = { Dashboard, Heatmap, Elasticity, SpreadIndex, Backtest, SourceHealth, Explainer };
+export function App() { const [name, setName] = useState<keyof typeof pages>("Dashboard"); const Page = pages[name]; return <main><nav>{Object.keys(pages).map(item => <button key={item} onClick={() => setName(item as keyof typeof pages)}>{item}</button>)}</nav><Page /></main>; }
